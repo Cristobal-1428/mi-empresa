@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — StudioCP</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/portal.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="portal-header-bar">
+    <a href="index.html" class="logo">Studio<span class="logo-cp">CP</span> <span class="admin-chip">Admin</span></a>
+    <button class="btn btn-sm btn-ghost" id="btn-logout">Cerrar sesión</button>
+  </header>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar: lista de clientes + nuevo cliente -->
+    <aside class="admin-sidebar">
+      <h2 class="sidebar-title">Clientes</h2>
+      <div id="clients-list" class="clients-list"></div>
+
+      <hr class="sidebar-divider" />
+
+      <h3 class="sidebar-subtitle">Nuevo cliente</h3>
+      <form id="form-new-client" class="admin-form">
+        <div class="field">
+          <label>Nombre del cliente</label>
+          <input type="text" id="new-name" placeholder="Juan Pérez" required />
+        </div>
+        <div class="field">
+          <label>Email del cliente</label>
+          <input type="email" id="new-email" placeholder="cliente@correo.com" required />
+        </div>
+        <div class="field">
+          <label>Nombre del proyecto</label>
+          <input type="text" id="new-project" placeholder="Ej: E-Commerce Tienda" required />
+        </div>
+        <button type="submit" class="btn" style="width:100%">Crear cliente</button>
+        <p class="admin-note-inline" id="new-client-note"></p>
+      </form>
+    </aside>
+
+    <!-- Panel principal: editar cliente seleccionado -->
+    <main class="admin-main">
+
+      <div id="no-selection" class="admin-placeholder">
+        <p>Selecciona un cliente para gestionar su proyecto.</p>
+      </div>
+
+      <div id="editor-panel" hidden>
+        <h2 class="admin-client-title" id="edit-title"></h2>
+        <p class="admin-client-email" id="edit-email-display"></p>
+
+        <!-- Fase -->
+        <section class="admin-section">
+          <h3>Fase del proyecto</h3>
+          <form id="form-phase" class="admin-form inline-form">
+            <select id="edit-phase" class="field-select">
+              <option value="0">0 — Análisis</option>
+              <option value="1">1 — Diseño</option>
+              <option value="2">2 — Desarrollo</option>
+              <option value="3">3 — Pruebas</option>
+              <option value="4">4 — Entregado ✓</option>
+            </select>
+            <button type="submit" class="btn btn-sm">Actualizar fase</button>
+          </form>
+        </section>
+
+        <!-- Nueva actualización -->
+        <section class="admin-section">
+          <h3>Publicar actualización</h3>
+          <form id="form-update" class="admin-form">
+            <div class="field">
+              <textarea id="update-text" rows="3" placeholder="Ej: Finalizamos el diseño de las pantallas principales. Puedes revisarlas en la sección de archivos."></textarea>
+            </div>
+            <button type="submit" class="btn btn-sm">Publicar</button>
+          </form>
+        </section>
+
+        <!-- Agregar archivo -->
+        <section class="admin-section">
+          <h3>Agregar archivo</h3>
+          <form id="form-file" class="admin-form">
+            <div class="field">
+              <label>Nombre del archivo</label>
+              <input type="text" id="file-name" placeholder="Ej: Mockup pantalla inicio" required />
+            </div>
+            <div class="field">
+              <label>URL del archivo</label>
+              <input type="url" id="file-url" placeholder="https://drive.google.com/..." required />
+            </div>
+            <button type="submit" class="btn btn-sm">Agregar archivo</button>
+          </form>
+        </section>
+
+        <p class="admin-feedback" id="admin-note" role="status"></p>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
