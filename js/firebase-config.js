@@ -29,14 +29,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth }       from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ⚠️ Reemplaza estos valores con los de tu proyecto Firebase
 const firebaseConfig = {
-  apiKey:            "REEMPLAZA_CON_TU_API_KEY",
-  authDomain:        "REEMPLAZA.firebaseapp.com",
-  projectId:         "REEMPLAZA_CON_TU_PROJECT_ID",
-  storageBucket:     "REEMPLAZA.appspot.com",
-  messagingSenderId: "REEMPLAZA",
-  appId:             "REEMPLAZA",
+  apiKey:            "AIzaSyCnrJlAQbnVlLAygQ7g178H1fVFq5j86lA",
+  authDomain:        "studio-cp-54c4f.firebaseapp.com",
+  projectId:         "studio-cp-54c4f",
+  storageBucket:     "studio-cp-54c4f.firebasestorage.app",
+  messagingSenderId: "117331065288",
+  appId:             "1:117331065288:web:5b0608459091cb045228fd",
 };
 
 const app = initializeApp(firebaseConfig);
