@@ -77,19 +77,54 @@ document.querySelectorAll(".fade-in").forEach((el, i) => {
   observer.observe(el);
 });
 
-// ── Formulario de contacto ───────────────────────────
-// Para conectarlo: usa Formspree (formspree.io) o EmailJS
+// ── Formulario de contacto (Formsubmit.co) ───────────
 const form = document.getElementById("contact-form");
 const note = document.getElementById("form-note");
 
 if (form) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     if (!form.checkValidity()) {
+      note.style.color = "#f87171";
       note.textContent = "Por favor completa todos los campos.";
       return;
     }
-    note.textContent = "¡Mensaje recibido! Te contactaremos pronto.";
-    form.reset();
+
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    note.style.color = "var(--color-muted)";
+    note.textContent = "";
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/studiocp.fc@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          nombre:  form.nombre.value,
+          email:   form.email.value,
+          mensaje: form.mensaje.value,
+          _subject: "Nuevo mensaje desde StudioCP",
+        }),
+      });
+
+      if (res.ok) {
+        note.style.color = "var(--color-primary)";
+        note.textContent = "¡Mensaje enviado! Te contactaremos pronto.";
+        form.reset();
+      } else {
+        throw new Error();
+      }
+    } catch {
+      note.style.color = "#f87171";
+      note.textContent = "Hubo un error al enviar. Intenta de nuevo.";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Enviar mensaje";
+    }
   });
 }
